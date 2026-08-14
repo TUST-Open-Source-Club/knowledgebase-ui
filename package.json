@@ -2,6 +2,7 @@
   "name": "nuxt-app",
   "type": "module",
   "private": true,
+  "packageManager": "pnpm@10.33.2",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -9,7 +10,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint . --fix",
+    "lint:check": "eslint .",
     "format": "prettier --write .",
+    "test": "vitest run",
     "typecheck": "nuxt typecheck",
     "prepare": "husky"
   },
@@ -23,6 +26,11 @@
     ]
   },
   "dependencies": {
+    "@milkdown/core": "^7.22.1",
+    "@milkdown/plugin-history": "^7.22.1",
+    "@milkdown/preset-commonmark": "^7.22.1",
+    "@milkdown/preset-gfm": "^7.22.1",
+    "@milkdown/vue": "^7.22.1",
     "@nuxt/ui": "^4.8.2",
     "@pinia/nuxt": "^0.11.3",
     "nuxt": "^4.4.8",
@@ -37,6 +45,7 @@
     "eslint": "^9.39.4",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.7",
-    "prettier": "^3.8.4"
+    "prettier": "^3.8.4",
+    "vitest": "^4.1.10"
   }
 }
