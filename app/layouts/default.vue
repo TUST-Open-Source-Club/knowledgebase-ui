@@ -2,7 +2,12 @@
   <div class="site-shell">
     <header class="site-header">
       <NuxtLink class="brand" to="/" aria-label="返回知识库首页">
-        <img class="brand-mark" src="/icon/favicon.svg" alt="" />
+        <span
+          class="brand-mark"
+          role="img"
+          aria-label="开源协会知识库图标"
+          style="background-image: url('/icon/favicon.svg')"
+        />
         <span>
           <strong>开源协会知识库</strong>
         </span>
