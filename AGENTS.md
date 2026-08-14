@@ -121,3 +121,16 @@ BREAKING CHANGE: 文档详情响应字段发生变化
 ```
 
 每完成一个独立阶段，先完成验证、检查 diff，再创建一个原子提交，提交成功后才能进入下一阶段。未经明确要求，不 push 到默认分支，不 force-push，不重写历史。
+
+<!-- OPENWIKI:START -->
+
+## OpenWiki
+
+This repository has a generated `openwiki/` evidence index. It is optional just-in-time context, not required startup reading.
+
+- Treat source code and tests as authoritative. A brief's unknowns and review items are verification gaps, not automatic requirements.
+- Prefer the narrowest quiet validation that proves the changed behavior. Preserve complete failure output.
+
+The scheduled OpenWiki GitHub Actions workflow refreshes the repository wiki. Do not hand-edit generated OpenWiki pages unless explicitly asked; prefer updating source code/docs and letting OpenWiki regenerate.
+
+<!-- OPENWIKI:END -->
