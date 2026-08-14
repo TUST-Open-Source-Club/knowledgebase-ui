@@ -78,4 +78,4 @@ docs(readme): 更新项目文档
 
 ## License
 
-[MIT](./LICENSE)
+[AGPL-3.0](./LICENSE)

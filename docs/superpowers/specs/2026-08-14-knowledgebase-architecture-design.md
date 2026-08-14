@@ -115,11 +115,11 @@ infrastructure ─────实现─────> application ports / domain 
 
 ```text
 app/pages/index.vue
-  → interface-adapters/controllers/home-page-controller.ts
+  → interface-adapters/controllers/home-page.ts
   → application/use-cases/get-home-page-content.ts
-  → domain/repositories/home-content-repository.ts
-  → infrastructure/persistence/in-memory-home-content-repository.ts
-  → interface-adapters/presenters/home-page-presenter.ts
+  → domain/repositories/home-content.ts
+  → infrastructure/persistence/in-memory-home-content.ts
+  → interface-adapters/presenters/home-page.ts
   → app/pages/index.vue
 ```
 
@@ -139,6 +139,8 @@ app/pages/index.vue
 
 - 使用 TypeScript 严格类型表达边界，优先 `type`、不可变数据和窄类型。
 - 一个文件只承担一个清晰职责；类和函数命名使用动词或领域名词，避免 `utils2`、`helper` 等无语义名称。
+- 目录负责表达上下文，文件名负责表达职责；当目录已经声明了 `controllers`、`repositories`、`presenters`、`ports` 等上下文时，文件名不得机械重复 `controller`、`repository`、`presenter`、`interface` 等目录语义。例如使用 `controllers/home-page.ts`、`repositories/home-content.ts`，不使用 `controllers/home-page-controller.ts`、`repositories/home-content-repository.ts`。
+- 只有在表达协议、第三方实现、运行时差异或必要消歧时，才允许文件名保留额外限定词，例如 `persistence/in-memory-home-content.ts`、`markdown/milkdown.ts`、`http/client.ts`。
 - Vue 组件使用 `<script setup lang="ts">`，页面只负责组合，不放跨页面业务规则。
 - 用例保持单一业务目标；端口使用接口或类型定义，具体实现放在基础设施层。
 - 跨层数据必须经过 DTO、mapper 或 presenter，禁止把数据库记录直接暴露给页面。
