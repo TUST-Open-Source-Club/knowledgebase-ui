@@ -1,12 +1,12 @@
 # Knowledgebase Skeleton Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **历史计划说明**：本文件记录项目骨架阶段的实施计划。当前 `app/pages/index.vue` 与 `app/pages/workspace.vue` 已退化为最小占位页，首页示例链路（HomeHero、HomeCategoryList、HomeDocumentList 及相关 domain/application/interface-adapters/infrastructure 文件）已移除，工具链版本约束已放宽为范围声明。下方具体步骤保留为历史参考，不代表当前源码状态。
 
 **Goal:** 建立 Nuxt 4 类语雀知识库的长期协作骨架，用 Clean Architecture 四层和一个最小首页示例明确代码边界、命名规则、工具链和文档治理。
 
-**Architecture:** `app/`、`server/` 和 `shared/` 保留 Nuxt 约定式目录；`domain/`、`application/`、`interface-adapters/`、`infrastructure/` 位于根目录，分别承担领域规则、用例、转换适配和外部实现。首页通过组合根创建依赖，经过控制器、用例、领域仓储和 presenter 返回页面 view model；页面不直接读取基础设施。
+**Architecture:** `app/`、`server/` 和 `shared/` 保留 Nuxt 约定式目录；`domain/`、`application/`、`interface-adapters/`、`infrastructure/` 位于根目录，分别承担领域规则、用例、转换适配和外部实现。页面通过组合根创建依赖，经过控制器、用例、领域仓储和 presenter 返回页面 view model；页面不直接读取基础设施。
 
-**Tech Stack:** Nuxt 4.4.8, Vue 3.5.38, TypeScript 6.0.3, Milkdown 7.22.1, Vitest 4.1.10, pnpm 10.33.2, Node 24.
+**Tech Stack:** Nuxt ^4.4.8, Vue ^3.5.38, TypeScript ^6.0.3, Milkdown ^7.22.1, Vitest ^4.1.10, pnpm >=10, Node >=22.
 
 ---
 
@@ -19,11 +19,11 @@
 - Modify: `nuxt.config.ts` — 注册应用样式和 Clean Architecture 根目录别名。
 - Modify: `app/app.vue` — 使用 Nuxt 页面和默认布局作为应用根。
 - Create: `app/layouts/default.vue` — 页面公共壳层。
-- Create: `app/pages/index.vue` — 首页入口，只组合 composable 和展示组件。
-- Create: `app/composables/use-home-page.ts` — Nuxt 数据加载适配，不实现业务规则。
-- Create: `app/components/home/HomeHero.vue` — 首页主视觉展示。
-- Create: `app/components/home/HomeCategoryList.vue` — 分类入口展示。
-- Create: `app/components/home/HomeDocumentList.vue` — 最近文档展示。
+- Create: `app/pages/index.vue` — 首页入口，当前为最小占位页。
+- Create: `app/composables/use-home-page.ts` — Nuxt 数据加载适配，不实现业务规则（当前已随示例链路移除）。
+- Create: `app/components/home/HomeHero.vue` — 首页主视觉展示（当前已移除，首页为占位页）。
+- Create: `app/components/home/HomeCategoryList.vue` — 分类入口展示（当前已移除）。
+- Create: `app/components/home/HomeDocumentList.vue` — 最近文档展示（当前已移除）。
 - Create: `app/assets/styles/main.css` — 全局设计变量和基础样式。
 - Create: `domain/entities/home-content.ts` — 首页领域实体及构造函数。
 - Create: `domain/repositories/home-content.ts` — 领域仓储抽象，只表达读取能力。

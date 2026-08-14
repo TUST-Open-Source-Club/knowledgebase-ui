@@ -78,7 +78,7 @@ docs(readme): 更新项目文档
 ├── infrastructure/         # 外部驱动和组合根
 ├── server/                 # Nuxt 服务端入口
 ├── shared/                 # 跨端基础代码
-├── docs/                   # 架构、指南和 ADR
+├── docs/                   # 架构、指南、ADR 和阶段性计划
 ├── nuxt.config.ts          # Nuxt 配置
 └── AGENTS.md               # 项目协作规约
 ```

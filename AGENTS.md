@@ -74,7 +74,7 @@ Markdown 编辑和渲染统一规划使用 Milkdown。Milkdown 相关包已经�
 - `docs/architecture/`：目录、分层和依赖方向的长期说明。
 - `docs/guides/`：新人上手和日常开发流程。
 - `docs/adr/`：需要长期追溯的架构决策及其取舍。
-- `docs/superpowers/specs/`、`docs/superpowers/plans/`：阶段性的设计和实施记录，不替代长期架构文档。
+- `docs/specs/`、`docs/plans/`：阶段性的设计和实施记录，不替代长期架构文档。
 - 代码行为、命令、公开流程或架构发生变化时，同一阶段更新对应文档。
 
 ## 验证命令

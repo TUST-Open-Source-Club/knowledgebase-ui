@@ -11,10 +11,8 @@ pnpm dev
 
 ## 页面入口
 
-- `/` 和 `/workspace` 当前都是最小占位页，只保留公共顶部导航；首页不渲染 Dock，Dock 和 Orb 源文件已移除。
+- `/` 和 `/workspace` 当前都是最小占位页，只保留公共顶部导航。
 - 顶部导航使用 `app/components/CardNav/CardNav.vue`：收起状态展示品牌标识和工作台入口，展开状态展示三组导航卡片；卡片文案和链接在 `app/layouts/default.vue` 中声明。
-- 工作台入口使用 `app/components/SpecularButton/SpecularButton.vue`，组件只负责按钮视觉效果，路由跳转仍由布局层负责。
-- CardNav 和 SpecularButton 来自 Vue Bits，并经过项目适配：菜单辅助文案使用中文，图标复用 `@lucide/vue`，页面品牌标识统一使用 `public/icon/favicon.svg`。
 - 真实知识空间、收藏和最近访问功能后续再接入 Clean Architecture 用例，不在当前页面实现。
 - 首页和工作台共享公共品牌壳层，页面署名固定为“天津科技大学开放原子开源协会”。
 

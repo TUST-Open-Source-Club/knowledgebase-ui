@@ -61,7 +61,8 @@ docs/
 ├── architecture/                 # 架构说明和目录地图
 ├── guides/                       # 新人和日常工作指南
 ├── adr/                          # 架构决策记录
-└── superpowers/                  # 阶段设计与实施计划
+├── plans/                        # 阶段性实施计划
+└── specs/                        # 阶段性设计文档
 ```
 
 ## 文件命名规则
