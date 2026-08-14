@@ -52,34 +52,36 @@
 - presenter 负责输出边界。
 - view-model 是页面稳定依赖的展示数据结构。
 
-页面不应该从 `HomePageData` 自己拼日期、数量文案或权限状态，这些转换属于 mapper/presenter。
+页面不应该从用例返回的 DTO 自己拼日期、数量文案或权限状态，这些转换属于 mapper/presenter。
 
 ### infrastructure
 
 基础设施层实现外部细节，包括 HTTP、持久化、日志、Milkdown 和 Nuxt 组合根。
 
-组合根是具体依赖的组装点。例如首页示例的 `infrastructure/nuxt/home-page.ts` 创建内存仓储、用例和 controller；未来替换 API 时，只改变组合根和仓储实现。
+组合根是具体依赖的组装点。例如文档详情页可以在 `infrastructure/nuxt/document-detail.ts` 创建仓储、用例和 controller；未来替换 API 时，只改变组合根和仓储实现，不影响 domain/application。
 
-## 首页示例调用链
+## 典型调用链
+
+当前 `/` 与 `/workspace` 都是最小占位页，尚未接入真实业务链路。未来新增功能时，推荐形成如下调用链：
 
 ```text
-app/pages/index.vue
-  ↓ useHomePage
-app/composables/use-home-page.ts
-  ↓ createHomePage
-infrastructure/nuxt/home-page.ts
-  ↓ createHomePageController
-interface-adapters/controllers/home-page.ts
+app/pages/document.vue
+  ↓ useDocumentDetail
+app/composables/use-document-detail.ts
+  ↓ createDocumentDetail
+infrastructure/nuxt/document-detail.ts
+  ↓ createDocumentDetailController
+interface-adapters/controllers/document-detail.ts
   ↓ execute
-application/use-cases/get-home-page-content.ts
+application/use-cases/get-document-detail.ts
   ↓ read
-domain/repositories/home-content.ts
+domain/repositories/document.ts
   ↑ implements
-infrastructure/persistence/in-memory-home-content.ts
-  ↓ HomePageData
-interface-adapters/presenters/home-page.ts
-  ↓ HomePageViewModel
-app/components/home/*.vue
+infrastructure/persistence/document.ts
+  ↓ DocumentDetailData
+interface-adapters/presenters/document-detail.ts
+  ↓ DocumentDetailViewModel
+app/components/document/*.vue
 ```
 
 这条链路中的每一层都有明确替换点：
