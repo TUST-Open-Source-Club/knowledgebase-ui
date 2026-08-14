@@ -1,12 +1,14 @@
 # Knowledgebase Homepage and Workspace Implementation Plan
 
+> 当前实现已按最新范围收缩：两个路由只保留占位页面和公共顶部导航；首页不渲染 Dock，Dock 和 Orb 源文件已移除。下方原宣传首屏与工作台方案暂不执行。
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 将首页重做为浅色宣传首屏，并增加只展示信息架构的工作台占位页。
 
 **Architecture:** `/` 只组合 Hero、Orb 和底部 Dock，不渲染 Sidebar；`/workspace` 使用 shadcn Sidebar 和 Lucide 图标展示未来工作台边界。现有 Clean Architecture 数据链只为首页 Hero 提供标题和说明，所有 UI 依赖留在 `app/` 与生成组件目录。
 
-**Tech Stack:** Nuxt 4、Vue 3、TypeScript、shadcn-vue 组件、Vue Bits Dock/Orb、`lucide-vue-next`、GSAP、pnpm。
+**Tech Stack:** Nuxt 4、Vue 3、TypeScript、shadcn-vue 组件、Vue Bits Dock/Orb、`@lucide/vue`、GSAP、pnpm。
 
 ---
 
@@ -39,7 +41,7 @@
 
 ```bash
 pnpm dlx shadcn-vue@latest init
-pnpm add lucide-vue-next gsap clsx tailwind-merge class-variance-authority
+pnpm add @lucide/vue gsap clsx tailwind-merge class-variance-authority
 ```
 
 配置输出目录为 `app/components/ui`，工具别名为 `~/lib/utils`，样式继续使用 `app/assets/styles/main.css`。若 CLI 已检测到现有配置，只补齐缺失字段，不改用 npm/yarn。
@@ -63,6 +65,15 @@ pnpm dlx shadcn@latest add https://vue-bits.dev/r/dock.json
 pnpm dlx shadcn@latest add https://vue-bits.dev/r/orb.json
 ```
 
+如果网站 registry URL 返回 HTML，使用 Vue Bits 官方仓库的 raw registry：
+
+```bash
+pnpm dlx shadcn@latest add https://raw.githubusercontent.com/DavidHDev/vue-bits/main/public/r/Dock.json
+pnpm dlx shadcn@latest add https://raw.githubusercontent.com/DavidHDev/vue-bits/main/public/r/Orb.json
+```
+
+原计划使用上述官方 raw registry；当前范围已收缩，Dock、Orb 及其首页包装源文件已移除。
+
 如果 CLI 对 Vue registry 组件要求 `shadcn-vue` 入口，则使用等价的 Vue CLI 入口并保留相同 registry URL；不手写替代组件覆盖生成文件。
 
 - [ ] **Step 4: 禁用远程字体 provider**
@@ -78,7 +89,7 @@ fonts: {
 },
 ```
 
-保留 `icon: { provider: 'local' }`，全局 CSS 使用本地优先字体栈；页面不通过 `@import` 或 `<link>` 请求 Google Fonts。
+使用 `icon: { provider: 'none' }`，Lucide 直接作为 Vue 组件导入；全局 CSS 使用本地优先字体栈，页面不通过 `@import` 或 `<link>` 请求 Google Fonts。
 
 - [ ] **Step 5: 配置 favicon**
 
@@ -215,7 +226,7 @@ git commit -m "feat(home): 重做宣传首屏"
 
 - [ ] **Step 1: 创建工作台壳层**
 
-使用 shadcn `SidebarProvider` 和 `Sidebar`，通过 `workspaceNavigation` 渲染导航项，并使用 `lucide-vue-next` 的 `House`、`Bookmark`、`Clock3` 组件。Sidebar 只属于 `/workspace`。
+使用 shadcn `SidebarProvider` 和 `Sidebar`，通过 `workspaceNavigation` 渲染导航项，并使用 `@lucide/vue` 的 `House`、`Bookmark`、`Clock3` 组件。Sidebar 只属于 `/workspace`。
 
 - [ ] **Step 2: 创建正式空状态**
 

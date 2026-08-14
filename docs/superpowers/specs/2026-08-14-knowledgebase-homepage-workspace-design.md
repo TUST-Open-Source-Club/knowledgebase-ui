@@ -1,5 +1,7 @@
 # 知识库宣传首屏与工作台占位页设计
 
+> 当前实现以最新范围为准：`/` 与 `/workspace` 仅保留占位内容和公共顶部导航；首页不渲染 Dock，Dock 和 Orb 源文件已移除。下方视觉方案暂不执行。
+
 ## 目标
 
 将当前首页重做为类语雀知识库的纯展示性宣传首屏，同时增加一个不实现真实业务的工作台占位页。宣传首屏负责品牌、视觉和进入路径；工作台页面负责提前固定未来知识整理界面的导航骨架。
@@ -56,7 +58,7 @@ app/pages/workspace.vue
 
 - 在 Nuxt 配置中禁用 `@nuxt/fonts` 的 Google 和 Google Icons provider，避免构建时访问 `fonts.google.com`。
 - CSS 使用 `Geist`, `Noto Sans SC`, `Microsoft YaHei`, `sans-serif` 的本地优先字体栈；项目不额外下载字体文件。
-- Sidebar 和工作台导航使用 `lucide-vue-next`；不使用 Material Symbols 远程字体。
+- Sidebar 和工作台导航使用 `@lucide/vue`；不使用 Material Symbols 远程字体。
 - 页面 head 的 favicon 显式指向 `/icon/favicon.svg`。
 
 ## 验证策略
