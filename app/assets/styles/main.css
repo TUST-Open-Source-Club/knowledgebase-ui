@@ -1,7 +1,14 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
 :root {
   color-scheme: light;
   font-family:
-    Inter,
+    Geist,
+    'Noto Sans SC',
+    'Microsoft YaHei',
     ui-sans-serif,
     system-ui,
     -apple-system,
@@ -470,5 +477,18 @@ a {
 
   .site-footer span + span {
     margin-top: 8px;
+  }
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
