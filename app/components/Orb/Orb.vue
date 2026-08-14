@@ -229,17 +229,17 @@
     const rgbMatch = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
     if (rgbMatch) {
       return new Vec3(
-        parseInt(rgbMatch[1]) / 255,
-        parseInt(rgbMatch[2]) / 255,
-        parseInt(rgbMatch[3]) / 255
+        parseInt(rgbMatch[1] ?? '0', 10) / 255,
+        parseInt(rgbMatch[2] ?? '0', 10) / 255,
+        parseInt(rgbMatch[3] ?? '0', 10) / 255
       );
     }
 
     const hslMatch = color.match(/hsla?\((\d+),\s*(\d+)%,\s*(\d+)%/);
     if (hslMatch) {
-      const h = parseInt(hslMatch[1]) / 360;
-      const s = parseInt(hslMatch[2]) / 100;
-      const l = parseInt(hslMatch[3]) / 100;
+      const h = parseInt(hslMatch[1] ?? '0', 10) / 360;
+      const s = parseInt(hslMatch[2] ?? '0', 10) / 100;
+      const l = parseInt(hslMatch[3] ?? '0', 10) / 100;
       return hslToRgb(h, s, l);
     }
 

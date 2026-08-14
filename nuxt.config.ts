@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     },
   },
   icon: {
-    provider: 'local',
+    provider: 'none',
   },
   app: {
     head: {

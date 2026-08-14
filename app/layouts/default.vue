@@ -2,20 +2,18 @@
   <div class="site-shell">
     <header class="site-header">
       <NuxtLink class="brand" to="/" aria-label="返回知识库首页">
-        <span class="brand-mark">A</span>
+        <img class="brand-mark" src="/icon/favicon.svg" alt="" />
         <span>
-          <strong>原子知识库</strong>
-          <small>OPEN KNOWLEDGE</small>
+          <strong>开源协会知识库</strong>
         </span>
       </NuxtLink>
 
       <nav class="site-nav" aria-label="主导航">
-        <NuxtLink to="/">知识空间</NuxtLink>
-        <a href="#categories">知识分类</a>
-        <a href="#recent">最近更新</a>
+        <NuxtLink to="/">首页</NuxtLink>
+        <NuxtLink to="/workspace">知识工作台</NuxtLink>
       </nav>
 
-      <button class="header-action" type="button">进入空间</button>
+      <NuxtLink class="header-action" to="/workspace">进入工作台</NuxtLink>
     </header>
 
     <main>
@@ -24,7 +22,7 @@
 
     <footer class="site-footer">
       <span>天津科技大学开放原子开源协会</span>
-      <span>让每一次分享都成为下一次创造的起点</span>
+      <span>让知识在连接中持续生长</span>
     </footer>
   </div>
 </template>
