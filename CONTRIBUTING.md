@@ -54,11 +54,17 @@ pnpm install
 我们使用 [Conventional Commits](https://www.conventionalcommits.org/) 规范。提交信息格式如下：
 
 ```
-<type>(<scope>): <subject>
+type(scope): 中文摘要
+```
 
-<body>
+`type` 使用小写，`scope` 使用小写字母、数字和短横线，摘要必须包含中文。普通提交只写一行 header，不写 body。
 
-<footer>
+只有破坏性提交可以写 body。破坏性提交需要在 header 中使用 `!`，并在 body 中写明 `BREAKING CHANGE:`：
+
+```text
+feat(api)!: 调整文档接口
+
+BREAKING CHANGE: 文档详情响应结构发生变化
 ```
 
 ### type 类型
@@ -78,21 +84,17 @@ pnpm install
 
 ```
 feat(auth): 添加用户登录功能
-
-- 实现用户名密码登录
-- 添加 JWT 认证
-- 修复登录状态保持问题
-
-Closes #123
 ```
+
+提交时会依次经过 `pre-commit`、`commit-msg` 和 `pre-push`。普通提交不会运行 Markdown 语法检查或拼写检查；CI 才会执行完整的 lint、类型检查、测试和构建。
 
 ## 代码风格
 
-- 使用 ESLint 进行代码检查。
-- 使用 Prettier 进行代码格式化。
-- 遵循 TypeScript 最佳实践。
-- 组件命名使用 PascalCase。
-- 文件命名使用 kebab-case。
+- 使用 Nuxt 默认 ESLint 规则和项目现有 Prettier 配置。
+- Vue 组件使用 `<script setup lang="ts">`，组件文件名使用 PascalCase。
+- 普通 TypeScript 文件使用 kebab-case。
+- 目录表达上下文，文件名表达职责；不要写 `controllers/document-detail-controller.ts` 这种重复命名，应写成 `controllers/document-detail.ts`。
+- Clean Architecture 的详细边界见 [架构说明](docs/architecture/clean-architecture.md)。
 
 ## 报告问题
 
