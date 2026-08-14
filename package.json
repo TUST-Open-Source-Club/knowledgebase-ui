@@ -14,6 +14,7 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "typecheck": "nuxt typecheck",
+    "check:pre-push": "pnpm run lint:check && pnpm run typecheck",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -21,7 +22,7 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{css,scss,less,html,md,json,yml,yaml}": [
+    "*.{css,scss,less}": [
       "prettier --write"
     ]
   },

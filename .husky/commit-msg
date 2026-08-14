@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+set -e
 
-npx --no -- commitlint --edit $1
+pnpm exec commitlint --edit "$1"
+pnpm exec node scripts/validate-commit-message.mjs "$1"

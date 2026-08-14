@@ -14,7 +14,7 @@
 
 ### 将创建或修改的核心文件
 
-- Modify: `package.json` — 增加 Milkdown、Vitest、检查脚本、pnpm 版本声明和只针对代码文件的 lint-staged。
+- Modify: `package.json` — 增加 Milkdown、Vitest、TypeScript、vue-tsc、检查脚本、pnpm 版本声明和只针对代码文件的 lint-staged。
 - Modify: `pnpm-lock.yaml` — 由 pnpm 更新锁定依赖。
 - Modify: `nuxt.config.ts` — 注册应用样式和 Clean Architecture 根目录别名。
 - Modify: `app/app.vue` — 使用 Nuxt 页面和默认布局作为应用根。
@@ -38,6 +38,7 @@
 - Create: `infrastructure/nuxt/home-page.ts` — Nuxt 组合根，集中组装具体实现。
 - Create: `tests/unit/get-home-page-content.test.ts` — 真实仓储和用例的单元测试。
 - Create: `tests/unit/present-home-page.test.ts` — presenter 映射行为测试。
+- Create: `tests/unit/validate-commit-message.test.ts` — 提交信息校验器行为测试。
 
 ### 将创建的治理与说明文件
 
@@ -53,6 +54,7 @@
 - Create: `scripts/validate-commit-message.mjs` — `type(scope): 中文摘要` 及 body 规则校验器。
 - Create: `.github/workflows/ci.yml` — CI 中的全量 lint、typecheck、test、build。
 - Modify: `commitlint.config.js` — 保留 Conventional Commits 基础解析规则。
+- Modify: `eslint.config.mjs` — 使用 Nuxt 默认 ESLint 配置，不额外启用 stylistic/tooling 规则。
 
 为了让空的 Nuxt 约定目录也能被 Git 跟踪，空目录使用 `README.md` 说明其职责；这些 `README.md` 是目录入口的特例，不用于代替业务代码。不会创建无意义的业务占位实现。
 
@@ -77,7 +79,7 @@ pnpm add -D vitest@^4.1.10
 
 - [ ] **Step 2: 增加可复现的包管理器声明和基础脚本**
 
-在 `package.json` 中加入：
+在 `package.json` 中加入 `typescript@^6.0.3`、`vue-tsc@^3.3.9`，让 Nuxt 默认 ESLint 和 `nuxt typecheck` 能直接识别根级 TypeScript 文件；同时加入：
 
 ```json
 {
@@ -93,7 +95,7 @@ pnpm add -D vitest@^4.1.10
 
 - [ ] **Step 3: 配置 Clean Architecture 根目录别名**
 
-在 `nuxt.config.ts` 中使用 `node:url` 的 `fileURLToPath`，为 `@domain`、`@application`、`@interface-adapters`、`@infrastructure` 提供绝对路径别名，并把 `~/assets/styles/main.css` 注册到 `css`。别名只解决路径，不改变依赖方向。
+在 `nuxt.config.ts` 中使用 `node:url` 的 `fileURLToPath`，为 `@domain`、`@application`、`@interface-adapters`、`@infrastructure` 提供绝对路径别名，并把 `~/assets/styles/main.css` 注册到 `css`。别名只解决路径，不改变依赖方向。保留仓库现有 `.prettierrc`，ESLint 使用 Nuxt 默认配置。
 
 - [ ] **Step 4: 创建 Nuxt 约定目录和四层目录**
 
@@ -147,7 +149,7 @@ git commit -m "chore(scaffold): 搭建项目目录骨架"
 
 - [ ] **Step 5: 写 presenter 的失败测试并确认 RED**
 
-在 `tests/unit/present-home-page.test.ts` 中构造一个 `HomePageData`，断言 `presentHomePage` 返回页面需要的 `hero`、`categories` 和 `documents` 结构；先运行测试，确认 presenter 尚不存在或行为不正确。
+在 `tests/unit/present-home-page.test.ts` 中构造一个 `HomePageData`，断言 `presentHomePage` 返回页面需要的 `hero`、`documentTotal`、`categories` 和 `documents` 结构；先运行测试，确认 presenter 尚不存在或行为不正确。
 
 - [ ] **Step 6: 实现 controller、mapper、presenter 和组合根**
 
@@ -212,7 +214,7 @@ git commit -m "feat(home): 完成首页分层示例"
 
 - [ ] **Step 1: 更新 package scripts 和 lint-staged**
 
-将 lint-staged 限定为 Vue、JS、TS 和 CSS 文件，只运行 `eslint --fix`、`prettier --write`；删除 Markdown、JSON、YAML 文件的 hook 任务。增加：
+将 lint-staged 限定为 Vue、JS、TS 和 CSS 文件，只运行 `eslint --fix`、`prettier --write`；删除 Markdown、JSON、YAML 文件的 hook 任务。移除 ESLint 配置中额外的 stylistic/tooling 开关，保留 Nuxt 默认规则。增加：
 
 ```json
 {
@@ -224,7 +226,7 @@ git commit -m "feat(home): 完成首页分层示例"
 
 - [ ] **Step 2: 实现提交信息校验器**
 
-`validate-commit-message.mjs` 导出可测试的 `validateCommitMessage`，并在 CLI 模式读取传入文件。它必须接受 `feat(auth): 添加登录`，拒绝没有中文摘要、缺少 scope、scope 含大写或非破坏性提交带 body 的消息；`feat(api)!: 调整接口` 只有在 body 含 `BREAKING CHANGE: ...` 时接受。
+先在 `tests/unit/validate-commit-message.test.ts` 写测试，再实现 `validate-commit-message.mjs`。脚本导出可测试的 `validateCommitMessage`，并在 CLI 模式读取传入文件。它必须接受 `feat(auth): 添加登录`，拒绝没有中文摘要、缺少 scope、scope 含大写或非破坏性提交带 body 的消息；`feat(api)!: 调整接口` 只有在 body 含 `BREAKING CHANGE: ...` 时接受。
 
 - [ ] **Step 3: 配置三个 hook**
 
