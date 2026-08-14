@@ -256,6 +256,13 @@ a {
   min-height: calc(100vh - 160px);
 }
 
+.home-aurora-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .page-placeholder {
   display: grid;
   width: min(1240px, calc(100% - 64px));
@@ -264,12 +271,6 @@ a {
   align-content: center;
   justify-items: center;
   text-align: center;
-}
-
-.page-placeholder-label {
-  margin: 0;
-  color: var(--muted-foreground);
-  font-size: 13px;
 }
 
 .page-placeholder h1 {
