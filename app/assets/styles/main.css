@@ -128,11 +128,44 @@ a {
 }
 
 .site-header {
+  position: relative;
   display: flex;
-  min-height: 88px;
+  width: 100%;
+  min-height: 104px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 0;
+}
+
+.site-card-nav {
+  top: 24px !important;
+  width: min(1180px, calc(100% - 48px)) !important;
+  max-width: none !important;
+}
+
+.card-nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--foreground);
+  font-size: 18px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.card-nav-brand-mark {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background-position: center;
+  background-size: cover;
+}
+
+.site-card-nav-action {
+  display: inline-flex;
+  align-items: center;
+  order: 3;
 }
 
 .brand,
@@ -566,6 +599,57 @@ a {
 }
 
 @media (max-width: 840px) {
+  .site-card-nav {
+    top: 16px !important;
+    width: calc(100% - 32px) !important;
+  }
+
+  .site-card-nav .card-nav-top {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    gap: 6px;
+  }
+
+  .site-card-nav .hamburger-menu {
+    grid-column: 1;
+    order: initial;
+  }
+
+  .site-card-nav .logo-container {
+    position: static;
+    display: flex;
+    min-width: 0;
+    justify-content: center;
+    grid-column: 2;
+    order: initial;
+    transform: none;
+  }
+
+  .site-card-nav .card-nav-brand {
+    gap: 5px;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+  }
+
+  .site-card-nav .card-nav-brand-mark {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 auto;
+  }
+
+  .site-card-nav .site-card-nav-action {
+    grid-column: 3;
+    order: initial;
+  }
+
+  .site-card-nav .site-card-nav-action button {
+    min-width: 0;
+    padding: 8px 10px !important;
+    font-size: 12px !important;
+    white-space: nowrap;
+  }
+
   .site-header,
   .site-footer,
   .hero-section {
