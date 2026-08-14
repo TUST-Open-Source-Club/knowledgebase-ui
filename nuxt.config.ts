@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@pinia/nuxt'],
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   css: ['~/assets/styles/main.css'],
   alias: {
     '@domain': fileURLToPath(new URL('./domain', import.meta.url)),

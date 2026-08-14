@@ -9,6 +9,7 @@ export type HomePageViewModel = Readonly<{
     title: string;
     description: string;
   }>;
+  documentTotal: number;
   categories: readonly Readonly<{
     id: string;
     name: string;

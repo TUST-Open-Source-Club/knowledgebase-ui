@@ -30,6 +30,7 @@ describe('presentHomePage', () => {
     const result = presentHomePage(data);
 
     expect(result.hero.title).toBe('让知识持续生长');
+    expect(result.documentTotal).toBe(3);
     expect(result.categories[0]?.countLabel).toBe('3 篇文档');
     expect(result.documents[0]?.updatedAtLabel).toBe('2026.08.14');
   });

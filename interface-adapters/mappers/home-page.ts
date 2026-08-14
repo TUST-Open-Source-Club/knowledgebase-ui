@@ -15,6 +15,7 @@ export function mapHomePage(data: HomePageData): HomePageViewModel {
       title: data.title,
       description: data.description,
     },
+    documentTotal: data.categories.reduce((total, category) => total + category.documentCount, 0),
     categories: data.categories.map((category) => ({
       id: category.id,
       name: category.name,
