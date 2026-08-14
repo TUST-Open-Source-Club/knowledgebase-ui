@@ -7,7 +7,7 @@ pnpm install
 pnpm dev
 ```
 
-项目使用 Node 24 和 pnpm 10.33.2。不要在同一个项目中混用 npm/yarn 生成锁文件。
+项目要求 Node >=22 和 pnpm >=10。不要在同一个项目中混用 npm/yarn 生成锁文件。
 
 ## 页面入口
 
