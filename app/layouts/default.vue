@@ -8,29 +8,29 @@
   const cardNavItems: CardNavItem[] = [
     {
       label: '关于协会',
-      bgColor: '#0a100b',
-      textColor: '#f5f7f3',
+      textColor: '#ffffff',
+      gradient: ['#B24E66', '#D1788C', '#E89DAE', '#F3C0B8', '#F0D590'],
       links: [
-        { label: '协会简介', href: '#about', ariaLabel: '查看协会简介' },
-        { label: '活动与成员', href: '#community', ariaLabel: '查看活动与成员' },
+        { label: '示例', ariaLabel: '功能示例占位' },
+        { label: '示例', ariaLabel: '功能示例占位' },
       ],
     },
     {
       label: '知识空间',
-      bgColor: '#132b16',
-      textColor: '#f5f7f3',
+      textColor: '#ffffff',
+      gradient: ['#3E2564', '#7B5E8E', '#B898A0', '#D4B896', '#E5C87B'],
       links: [
-        { label: '知识目录', href: '/workspace', ariaLabel: '进入知识目录' },
-        { label: '实践记录', href: '/workspace', ariaLabel: '查看实践记录' },
+        { label: '进入工作台', href: '/workspace', ariaLabel: '进入知识工作台' },
+        { label: '示例', ariaLabel: '功能示例占位' },
       ],
     },
     {
       label: '联系协会',
-      bgColor: '#203c25',
-      textColor: '#f5f7f3',
+      textColor: '#3E2564',
+      gradient: ['#C8B8DC', '#D4C8E4', '#E0D8EE', '#EAE4F4', '#F4F0FA'],
       links: [
-        { label: '加入协会', href: '#join', ariaLabel: '了解加入协会方式' },
-        { label: '联系我们', href: '#contact', ariaLabel: '查看联系方式' },
+        { label: '示例', ariaLabel: '功能示例占位' },
+        { label: '示例', ariaLabel: '功能示例占位' },
       ],
     },
   ];

@@ -11,9 +11,10 @@
 
   export type CardNavItem = {
     label: string;
-    bgColor: string;
     textColor: string;
     links: CardNavLink[];
+    bgColor?: string;
+    gradient?: string[];
   };
 
   export interface CardNavProps {
@@ -242,16 +243,23 @@
           :key="`${item.label}-${idx}`"
           :ref="setCardRef(idx)"
           class="relative flex flex-col flex-[1_1_auto] md:flex-[1_1_0%] gap-2 p-[12px_16px] rounded-[calc(0.75rem-0.2rem)] min-w-0 h-auto md:h-full min-h-[60px] md:min-h-0 select-none nav-card"
-          :style="{ backgroundColor: item.bgColor, color: item.textColor }"
+          :style="{
+            background: item.gradient
+              ? `linear-gradient(135deg, ${item.gradient.join(', ')})`
+              : item.bgColor,
+            color: item.textColor,
+          }"
         >
           <div class="font-normal text-[18px] md:text-[22px] tracking-[-0.5px] nav-card-label">
             {{ item.label }}
           </div>
           <div class="flex flex-col gap-[2px] mt-auto nav-card-links">
-            <a
+            <component
+              :is="lnk.href ? 'a' : 'span'"
               v-for="(lnk, i) in item.links"
               :key="`${lnk.label}-${i}`"
-              class="inline-flex items-center gap-[6px] hover:opacity-75 text-[15px] md:text-[16px] no-underline transition-opacity duration-300 cursor-pointer nav-card-link"
+              class="inline-flex items-center gap-[6px] hover:opacity-75 text-[15px] md:text-[16px] no-underline transition-opacity duration-300 nav-card-link"
+              :class="lnk.href ? 'cursor-pointer' : 'cursor-default'"
               :href="lnk.href"
               :aria-label="lnk.ariaLabel"
             >
@@ -262,7 +270,7 @@
                 aria-hidden="true"
               />
               {{ lnk.label }}
-            </a>
+            </component>
           </div>
         </div>
       </div>
