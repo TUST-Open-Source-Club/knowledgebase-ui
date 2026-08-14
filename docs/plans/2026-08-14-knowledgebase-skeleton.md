@@ -79,11 +79,14 @@ pnpm add -D vitest@^4.1.10
 
 - [ ] **Step 2: 增加可复现的包管理器声明和基础脚本**
 
-在 `package.json` 中加入 `typescript@^6.0.3`、`vue-tsc@^3.3.9`，让 Nuxt 默认 ESLint 和 `nuxt typecheck` 能直接识别根级 TypeScript 文件；同时加入：
+在 `package.json` 中加入 `typescript@^6.0.3`、`vue-tsc@^3.3.9`，让 Nuxt 默认 ESLint 和 `nuxt typecheck` 能直接识别根级 TypeScript 文件；同时加入脚本（当前版本约束已改为 `engines` 范围声明，不再锁定具体 patch 版本）：
 
 ```json
 {
-  "packageManager": "pnpm@10.33.2",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
   "scripts": {
     "lint:check": "eslint .",
     "test": "vitest run"
@@ -176,7 +179,7 @@ git commit -m "feat(architecture): 添加分层首页示例"
 
 ### Task 3: 首屏表现层示例
 
-**Files:** `app/app.vue`, `app/layouts/default.vue`, `app/pages/index.vue`, `app/composables/use-home-page.ts`, `app/components/home/HomeHero.vue`, `app/components/home/HomeCategoryList.vue`, `app/components/home/HomeDocumentList.vue`, `app/assets/styles/main.css`
+**Files:** `app/app.vue`, `app/layouts/default.vue`, `app/pages/index.vue`, `app/composables/use-home-page.ts`（当前已移除）, `app/components/home/HomeHero.vue`（当前已移除）, `app/components/home/HomeCategoryList.vue`（当前已移除）, `app/components/home/HomeDocumentList.vue`（当前已移除）, `app/assets/styles/main.css`
 
 - [ ] **Step 1: 创建应用根、布局和 composable**
 

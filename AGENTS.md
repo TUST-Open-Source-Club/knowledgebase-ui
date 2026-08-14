@@ -43,14 +43,14 @@ infrastructure → application ports / domain repositories
 目录表达上下文，文件名表达职责。目录已经声明上下文时，文件名不要机械重复目录语义：
 
 ```text
-推荐：controllers/home-page.ts
-不推荐：controllers/home-page-controller.ts
+推荐：controllers/document-detail.ts
+不推荐：controllers/document-detail-controller.ts
 
-推荐：repositories/home-content.ts
-不推荐：repositories/home-content-repository.ts
+推荐：repositories/document.ts
+不推荐：repositories/document-repository.ts
 ```
 
-文件名可以在表达协议、第三方实现、运行时差异或必要消歧时保留限定词，例如 `persistence/in-memory-home-content.ts`、`markdown/milkdown.ts`、`http/client.ts`。文件名必须让读者只看名字就能知道它承担什么职责，而不是只能知道它位于哪个目录。
+文件名可以在表达协议、第三方实现、运行时差异或必要消歧时保留限定词，例如 `persistence/in-memory-document.ts`、`markdown/milkdown.ts`、`http/client.ts`。文件名必须让读者只看名字就能知道它承担什么职责，而不是只能知道它位于哪个目录。
 
 ## 代码风格
 

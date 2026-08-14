@@ -1,8 +1,10 @@
 # 知识库项目骨架与 Clean Architecture 设计
 
+> **历史设计说明**：本文件记录骨架阶段采用的 Clean Architecture 设计。当前 `app/pages/index.vue` 与 `app/pages/workspace.vue` 已退化为最小占位页，原首页示例链路（`home-content`、`home-page` 及相关文件）已移除，四层目录保持空置以待真实业务接入。下方示例路径保留为历史参考，不代表当前源码状态。
+
 ## 目标
 
-为一个长期维护、多人协作的类语雀知识库项目建立可持续的 Nuxt 4 + Vue 3 工程骨架。首轮工作不实现真实业务，只用一个无开发态文案的首页示例证明目录职责、依赖方向、代码组织方式和文档规约。
+为一个长期维护、多人协作的类语雀知识库项目建立可持续的 Nuxt 4 + Vue 3 工程骨架。首轮工作不实现真实业务，只用一个无开发态文案的最小示例证明目录职责、依赖方向、代码组织方式和文档规约。
 
 ## 已确定的边界
 
@@ -111,19 +113,19 @@ infrastructure ─────实现─────> application ports / domain 
 
 ## 首屏示例的最小链路
 
-首页使用 `GetHomePageContent` 用例读取一个内存仓储：
+未来以“文档详情”为例，使用 `GetDocumentDetail` 用例读取一个内存仓储：
 
 ```text
-app/pages/index.vue
-  → interface-adapters/controllers/home-page.ts
-  → application/use-cases/get-home-page-content.ts
-  → domain/repositories/home-content.ts
-  → infrastructure/persistence/in-memory-home-content.ts
-  → interface-adapters/presenters/home-page.ts
-  → app/pages/index.vue
+app/pages/document.vue
+  → interface-adapters/controllers/document-detail.ts
+  → application/use-cases/get-document-detail.ts
+  → domain/repositories/document.ts
+  → infrastructure/persistence/in-memory-document.ts
+  → interface-adapters/presenters/document-detail.ts
+  → app/pages/document.vue
 ```
 
-页面只接收 `HomePageViewModel`，不感知实体内部结构，也不直接依赖内存仓储。真实 API 或数据库接入时，只替换基础设施实现和组合入口。
+页面只接收 `DocumentDetailViewModel`，不感知实体内部结构，也不直接依赖内存仓储。真实 API 或数据库接入时，只替换基础设施实现和组合入口。
 
 ## 文档治理
 
@@ -132,15 +134,15 @@ app/pages/index.vue
 - `docs/architecture/` 记录架构、依赖方向和边界决策。
 - `docs/guides/` 记录新人操作指南和常见开发流程。
 - `docs/adr/` 记录需要长期追溯的架构决策。
-- `docs/superpowers/specs/` 和 `docs/superpowers/plans/` 保存阶段性设计和实施计划，不替代项目长期文档。
+- `docs/specs/` 和 `docs/plans/` 保存阶段性设计和实施计划，不替代项目长期文档。
 - 代码注释解释“为什么”和边界，不重复显而易见的语法；公共层接口和跨层转换必须有中文说明。
 
 ## 代码风格
 
 - 使用 TypeScript 严格类型表达边界，优先 `type`、不可变数据和窄类型。
 - 一个文件只承担一个清晰职责；类和函数命名使用动词或领域名词，避免 `utils2`、`helper` 等无语义名称。
-- 目录负责表达上下文，文件名负责表达职责；当目录已经声明了 `controllers`、`repositories`、`presenters`、`ports` 等上下文时，文件名不得机械重复 `controller`、`repository`、`presenter`、`interface` 等目录语义。例如使用 `controllers/home-page.ts`、`repositories/home-content.ts`，不使用 `controllers/home-page-controller.ts`、`repositories/home-content-repository.ts`。
-- 只有在表达协议、第三方实现、运行时差异或必要消歧时，才允许文件名保留额外限定词，例如 `persistence/in-memory-home-content.ts`、`markdown/milkdown.ts`、`http/client.ts`。
+- 目录负责表达上下文，文件名负责表达职责；当目录已经声明了 `controllers`、`repositories`、`presenters`、`ports` 等上下文时，文件名不得机械重复 `controller`、`repository`、`presenter`、`interface` 等目录语义。例如使用 `controllers/document-detail.ts`、`repositories/document.ts`，不使用 `controllers/document-detail-controller.ts`、`repositories/document-repository.ts`。
+- 只有在表达协议、第三方实现、运行时差异或必要消歧时，才允许文件名保留额外限定词，例如 `persistence/in-memory-document.ts`、`markdown/milkdown.ts`、`http/client.ts`。
 - Vue 组件使用 `<script setup lang="ts">`，页面只负责组合，不放跨页面业务规则。
 - 用例保持单一业务目标；端口使用接口或类型定义，具体实现放在基础设施层。
 - 跨层数据必须经过 DTO、mapper 或 presenter，禁止把数据库记录直接暴露给页面。

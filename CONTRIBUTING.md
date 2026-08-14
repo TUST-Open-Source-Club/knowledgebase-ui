@@ -93,7 +93,7 @@ feat(auth): 添加用户登录功能
 - 使用 Nuxt 默认 ESLint 规则和项目现有 Prettier 配置。
 - Vue 组件使用 `<script setup lang="ts">`，组件文件名使用 PascalCase。
 - 普通 TypeScript 文件使用 kebab-case。
-- 目录表达上下文，文件名表达职责；不要写 `controllers/home-page-controller.ts` 这种重复命名，应写成 `controllers/home-page.ts`。
+- 目录表达上下文，文件名表达职责；不要写 `controllers/document-detail-controller.ts` 这种重复命名，应写成 `controllers/document-detail.ts`。
 - Clean Architecture 的详细边界见 [架构说明](docs/architecture/clean-architecture.md)。
 
 ## 报告问题

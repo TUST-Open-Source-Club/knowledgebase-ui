@@ -127,8 +127,8 @@ Milkdown 是编辑器驱动，不是知识库业务规则。它只能出现在 `
 ### 文件名重复目录语义
 
 ```text
-不推荐：interface-adapters/controllers/home-page-controller.ts
-推荐：interface-adapters/controllers/home-page.ts
+不推荐：interface-adapters/controllers/document-detail-controller.ts
+推荐：interface-adapters/controllers/document-detail.ts
 ```
 
 文件名的目标是让读者知道“它负责什么”，目录已经回答了“它属于哪类边界”。

@@ -70,16 +70,16 @@ docs/
 目录已经提供上下文时，文件名只表达职责：
 
 ```text
-controllers/home-page.ts
-repositories/home-content.ts
-presenters/home-page.ts
-use-cases/get-home-page-content.ts
+controllers/document-detail.ts
+repositories/document.ts
+presenters/document-detail.ts
+use-cases/get-document-detail.ts
 ```
 
 不要把目录名机械拼回文件名。只有实现差异、协议或第三方技术需要消歧时，才使用额外限定词：
 
 ```text
-persistence/in-memory-home-content.ts
+persistence/in-memory-document.ts
 markdown/milkdown.ts
 http/client.ts
 ```

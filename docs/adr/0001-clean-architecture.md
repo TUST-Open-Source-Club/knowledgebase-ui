@@ -45,4 +45,4 @@ infrastructure 实现 application ports 和 domain repositories
 
 ## 约束
 
-目录上下文不重复出现在文件名中。比如使用 `controllers/home-page.ts`，而不是 `controllers/home-page-controller.ts`；只有第三方实现或必要消歧时才增加限定词。
+目录上下文不重复出现在文件名中。比如使用 `controllers/document-detail.ts`，而不是 `controllers/document-detail-controller.ts`；只有第三方实现或必要消歧时才增加限定词。
